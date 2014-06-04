@@ -2,6 +2,18 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+
+    user ||= user.new #guest user
+
+    if user.role == "admin"
+        can :manage, :all
+    elsif user.role == "alumno"
+        can :read, Trivia
+        can [:read, :create], Pregunta
+    elsif user.role == "profesor"
+        can [:read, :create], Respuesta
+        can :read, clase
+    end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
