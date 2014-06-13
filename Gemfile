@@ -43,3 +43,5 @@ gem 'devise'
 
 #auth
 gem 'cancancan'
+
+gem 'htmlbeautifier'
