@@ -1,0 +1,37 @@
+<div class="jumbotron">
+  <h2>Perfil de <%= current_user.nombre_completo %></h2>
+
+  <%= form_for current_user do |f| %>
+
+    <div>
+      <%= f.label :nombre %><br/>
+      <%= f.text_field :nombre_completo, {:readonly => true, :size => 30 }%>
+    </div>
+    
+    <div>
+      <%= f.label :apodo %><br/>
+      <%= f.text_field :nickname, {:readonly => true,:size => 30 }%>
+    </div>
+
+    <div>
+      <%= f.label :colegio %><br/>
+      <%= f.text_field :colegio, {:readonly => true,:size => 30 }%>
+    </div>
+
+    <div>
+      <%= f.label :curso %><br/>
+      <%= f.text_field :curso, {:readonly => true,:size => 30 }%>
+    </div>
+
+    <div><%= f.label :email %><br />
+      <%= f.email_field :email, {:readonly => true,:size => 30 } %>
+    </div>
+  <% end %>
+  <br />
+  <p>
+    <%= link_to("Editar Perfil", edit_user_registration_path) %>
+  </p>
+  <p>
+    <%= link_to "Volver al Home", "/" %>
+  </p>
+</div>

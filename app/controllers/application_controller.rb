@@ -2,9 +2,12 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
 	protect_from_forgery with: :exception
+	
+	before_filter :configure_permitted_parameters, if: :devise_controller?
+
 
 	rescue_from CanCan::AccessDenied do |exception|
-		flash[:error] = exception.message
+		flash[:danger] = exception.message
 		redirect_to root_url
 	end
 
@@ -19,7 +22,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def respond_to_destroy
-		flash[:notice] = "Usuario Eliminado"
+		flash[:info] = "Usuario Eliminado"
 	end
 
 	def redirection_url
@@ -29,5 +32,13 @@ class ApplicationController < ActionController::Base
 	    else
 	      login_url
 	    end
+  	end
+
+  	protected
+  	def configure_permitted_parameters
+  		devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :nombre_completo, :colegio, :curso, :role) }
+  		devise_parameter_sanitizer.for(:sign_in) << :uid
+  		devise_parameter_sanitizer.for(:sign_in) << :provider
+    	devise_parameter_sanitizer.for(:account_update) << :nickname
   	end
 end

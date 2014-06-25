@@ -19,6 +19,11 @@
 					<% end -%>
 
 					<%= f.submit "Iniciar Sesión", :class => 'btn btn-small btn-success' %>
+					<p>
+						<br/>
+						o
+					</p>
+					<%= link_to 'Sign in with <i class="fa fa-2x fa-facebook-square"></i>'.html_safe , user_omniauth_authorize_path(:facebook) %>
 				<% end %>
 			</div>
 			<div class="modal-footer">

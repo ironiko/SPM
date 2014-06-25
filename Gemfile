@@ -45,3 +45,9 @@ gem 'devise'
 gem 'cancancan'
 
 gem 'htmlbeautifier'
+
+gem 'thin'
+
+gem 'font-awesome-rails'
+
+gem 'omniauth-facebook'

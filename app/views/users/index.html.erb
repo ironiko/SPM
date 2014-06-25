@@ -5,8 +5,10 @@
 		  <tr>
 		    <td><%= "#{u.email}" %></td>
 		    <td><%= "#{u.role}" %></td>
-		    <td><%= link_to_if(can?(:edit, User), image_tag("/images/edit_icon.gif"), edit_user_path(u.id)) {} %></td>
-		    <td><%= link_to_if(can?(:delete, u), image_tag("/images/delete_icon.gif"), u, :confirm => "Are you sure?", :method => :delete) {} %></td>
+		    <td>
+	        	<%= link_to_if(can?(:edit, User), '<i class="fa fa-2x fa-pencil-square-o"></i>'.html_safe, edit_user_path(u.id) ) {}%>
+	    	</td>
+		    <td><%= link_to_if(can?(:delete, u), '<i class="fa fa-2x fa-trash-o"></i>'.html_safe, u, :confirm => "Are you sure?", :method => :delete) {} %></td>
 		  </tr>
 		<% end %>
 	</table>
